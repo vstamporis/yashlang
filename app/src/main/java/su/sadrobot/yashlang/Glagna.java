@@ -41,6 +41,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
+import java.lang.reflect.Method;
+
 import su.sadrobot.yashlang.controller.VideoItemActions;
 import su.sadrobot.yashlang.model.VideoDatabase;
 import su.sadrobot.yashlang.model.VideoItem;
@@ -176,6 +179,14 @@ public class Glagna extends AppCompatActivity {
 
     }
 
+    protected void onStop() {
+        super.onStop();
+        try {
+            Class<?> emmaRTClass = Class.forName("com.vladium.emma.rt.RT");
+            Method dumpCoverageMethod = emmaRTClass.getMethod("dumpCoverageData", File.class, boolean.class, boolean.class);
+            dumpCoverageMethod.invoke(null, new File("sdcard/coverage.exec"), false, false);
+        } catch (Exception e) {}
+    }
 
     @Override
     protected void onResume() {

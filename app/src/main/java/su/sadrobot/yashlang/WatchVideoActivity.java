@@ -65,7 +65,9 @@ import com.google.android.exoplayer2.util.Util;
 
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -725,6 +727,8 @@ public class WatchVideoActivity extends AppCompatActivity {
         // а они могут загружаться в фоне позже, чем мы сюда попадем)
         updateControlsVisibility();
     }
+
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
